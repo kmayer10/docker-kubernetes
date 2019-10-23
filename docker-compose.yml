@@ -1,0 +1,20 @@
+version: '3'
+services: 
+  voting: 
+    image: "yogeshraheja/thinknyxvote:v1"
+    ports: 
+      - "81:80"
+
+  redis: 
+    image: "yogeshraheja/thinknyxredis:v1"
+
+  db: 
+    image: "yogeshraheja/thinknyxdb:v1"
+
+  worker: 
+    image: "yogeshraheja/thinknyxworker:v1"
+
+  result: 
+    image: "yogeshraheja/thinknyxresult:v1"
+    ports: 
+      - "82:80"
