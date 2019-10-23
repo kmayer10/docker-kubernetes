@@ -1,20 +1,42 @@
-version: '3'
-services: 
-  voting: 
+version: '3.5'
+services:
+  voting:
     image: "yogeshraheja/thinknyxvote:v1"
-    ports: 
+    ports:
       - "81:80"
+    networks: 
+      - voting
 
-  redis: 
+  redis:
     image: "yogeshraheja/thinknyxredis:v1"
+    networks: 
+      - voting
+      - db
 
-  db: 
+  db:
     image: "yogeshraheja/thinknyxdb:v1"
+    networks: 
+      - db
 
-  worker: 
+  worker:
     image: "yogeshraheja/thinknyxworker:v1"
+    networks: 
+      - db
+      - result
 
-  result: 
+  result:
     image: "yogeshraheja/thinknyxresult:v1"
-    ports: 
+    ports:
       - "82:80"
+    networks: 
+      - result 
+networks:
+  voting:  
+    name: voting
+    driver: bridge 
+  db: 
+    name: db
+    driver: bridge
+  result: 
+    name: result
+    driver: bridge
