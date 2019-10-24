@@ -1,5 +1,8 @@
 FROM centos
 RUN yum -y install httpd
-RUN echo "Thinknyx Technologies Deals in DevOps and Cloud" > /var/www/html/index.html
+#RUN echo "Thinknyx Technologies Deals in DevOps and Cloud" > /var/www/html/index.html
+
+COPY index.html /var/www/html/index.html
+
 EXPOSE 80
 ENTRYPOINT httpd -D FOREGROUND
